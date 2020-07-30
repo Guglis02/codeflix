@@ -1,32 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageDefault from '../../../components/PageDefault';
+import FormField from '../../../components/FormField';
 import { Link } from 'react-router-dom';
 
 function CadastroCategoria() {
-    return (
-      <PageDefault>
-        <h1>Cadastro de Categoria</h1>
+  const valoresIniciais = {
+    nome: '',
+    descricao: '',
+    cor: '#458B3F',
+  }
+  
+  const [categorias, setCategorias] = useState(['Teste']);
+  const [values, setValues] = useState(valoresIniciais);
 
-        <form>
+  function setValue(chave, valor) {
+    setValues({
+      ...values,
+      [chave]: valor,
+    })
+  }
 
-          <label>
-            Nome da Categoria:
-            <input
-              type="text"
-            />
-          </label>
+  function handleChange(infosDoEvento) {
+    setValue(
+      infosDoEvento.target.getAttribute('name'),
+      infosDoEvento.target.value
+    );
+  }
 
-          <button>
-            Cadastrar
-          </button>
-        </form>
+  return (
+    <PageDefault>
+      <h1>Cadastro de Categoria: {values.nome}</h1>
+
+      <form onSubmit={function handleSubmit(info) {
+        info.preventDefault();
+        setCategorias([
+          ...categorias,
+          values
+        ]);
+
+        setValues(valoresIniciais);
+      }}>
+
+        <FormField
+          label="Nome da Categoria: "
+          name="nome"
+          type="text"
+          value={values.nome}
+          onChange={handleChange}
+        />
+
+        <FormField
+          label="Descrição: "
+          name="descrição"
+          type="textarea"
+          value={values.descricao}
+          onChange={handleChange}
+        />
+        
+        <FormField
+          label="Cor: "
+          name="cor"
+          type="color"
+          value={values.cor}
+          onChange={handleChange}
+        />
+       
+        <button>
+          Cadastrar
+        </button>
+      </form>
+
+      <ul>
+        {categorias.map((categoria, indice) => {
+          return (
+            <li key={`${categoria}${indice}`}>
+              {categoria.nome}
+            </li>
+          )
+        })}
+      </ul>
 
 
-        <Link to="/">
-          Ir para home
-        </Link>
-      </PageDefault>
-    )
+      <Link to="/">
+        Ir para home
+      </Link>
+    </PageDefault>
+  )
   }
 
 export default CadastroCategoria;
