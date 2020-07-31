@@ -1,0 +1,36 @@
+{
+    "categorias": [
+      {
+        "id": 1,
+        "titulo": "Hak5",
+        "cor": "#ba0000",
+        "link_extra": {
+          "text": "Put together by a band of IT ninjas, security professionals and hardcore gamers",
+          "url": "https://www.youtube.com/channel/UC3s0BtrBJpwNDaflRSoiieQ"
+        }
+      },
+      {
+        "id": 2,
+        "titulo": "PopCoding",
+        "cor": "#003B00",
+        "link_extra": {
+          "text": "Pop culture codes explained in detail",
+          "url": "/"
+        }
+      }
+     ],
+    "videos": [
+      {
+        "id": 1,
+        "categoriaId": 1,
+        "titulo": "The Importance of the Twitter Hack",
+        "url": "https://www.youtube.com/watch?v=ld7euYtM7Yk"
+      },
+      {
+        "id": 2,
+        "categoriaId": 2,
+        "titulo": "Hacking Explained - Mr Robot - Season 1",
+        "url": "https://www.youtube.com/watch?v=rp6boOPomE4"
+      }
+    ]
+  }
